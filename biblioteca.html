@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="bl.css">
+   <title>Biblioteca - Dois Talentos</title>
+   
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+</head>
+<body>
+<!-- Cabeçalho -->
+<header>
+   <div class="header-container">
+      <div class="logoRD">
+         <a href="index.html" class="logo">
+            <img src="img/download.jfif" alt="Logo Dois Talentos" class="logo1">
+            <h1>Dois Talentos</h1>
+         </a>
+         <i class="fa-solid fa-bars" id="openmenu" onclick="openmenu()"></i>
+      </div>
+      <nav>
+         <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="serviços.html">Serviços</a></li>
+            <li><a href="contato.html">Contato</a></li>
+            <li><a href="biblioteca.html">Biblioteca</a></li>
+            <li><a href="portofolio.html">Eventos</a></li>
+            <li><a href="news.html" class="btn-entrar">Notícias</a></li>
+            <li><i class="fa-solid fa-circle-xmark" id="close" onclick="closemenu()"></i></li>
+         </ul>
+      </nav>
+   </div>
+</header>
+
+   <div class="biblioteca-section">
+      <h1>Nossa Biblioteca Virtual</h1>
+      
+      <div class="search-container">
+         <input type="text" class="search-input" placeholder="Pesquisar livros, autores, categorias...">
+      </div>
+
+      <div class="categorias">
+         <button class="categoria-btn active">Todos</button>
+         <button class="categoria-btn">Enfermagen</button>
+         <button class="categoria-btn">Análises</button>
+         <button class="categoria-btn">Historia</button>
+         <button class="categoria-btn">Desenvolvimento Pessoal</button>
+      </div>
+
+      <div class="livros-grid">
+         <div class="livro-card">
+            <img src="/api/placeholder/150/200" alt="Livro de Programação">
+            <h3>Introdução à Programação</h3>
+            <p>João Silva</p>
+            <p class="disponibilidade disponivel">Disponível</p>
+            <a href="#" class="btn-entrar">Acessar</a>
+            
+         </div>
+         <div class="livro-card">
+            <img src="/api/placeholder/150/200" alt="Livro de Matemática">
+            <h3>Matemática Avançada</h3>
+            <p>Maria Souza</p>
+            <p class="disponibilidade disponivel">Disponível</p>
+            <a href="#" class="btn-entrar">Acessar</a>
+         </div>
+         <div class="livro-card">
+            <img src="/api/placeholder/150/200" alt="Livro de Gestão">
+            <h3>Gestão de Projetos</h3>
+            <p>Pedro Santos</p>
+            <p class="disponibilidade indisponivel">Limitado</p>
+         </div>
+         <div class="livro-card">
+            <img src="/api/placeholder/150/200" alt="Livro de Desenvolvimento Web">
+            <h3>Desenvolvimento Web</h3>
+            <p>Ana Oliveira</p>
+            <p class="disponibilidade disponivel">Disponível</p>
+            <a href="#" class="btn-entrar">Acessar</a>
+         </div>
+         <div class="livro-card">
+            <img src="/api/placeholder/150/200" alt="Livro de Inteligência Emocional">
+            <h3>Inteligência Emocional</h3>
+            <p>Carlos Ferreira</p>
+            <p class="disponibilidade indisponivel">Limitado</p>
+         </div>
+         <div class="livro-card">
+            <img src="/api/placeholder/150/200" alt="Livro de Empreendedorismo">
+            <h3>Empreendedorismo</h3>
+            <p>Mariana Costa</p>
+            <p class="disponibilidade disponivel">Disponível</p>
+            <a href="#" class="btn-entrar">Acessar</a>
+         </div>
+      </div>
+   </div>
+
+   <footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Sobre Nós</h3>
+            <p>"Educação de qualidade para uma Saúde melhor!"</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>Links Úteis</h3>
+            <ul>
+                <li><a href="contato.html">Entre em contato</a></li>
+                <li><a href="serviços.html">Serviços</a></li>
+                <li><a href="news.html">Notícias</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contato</h3>
+            <ul>
+                <li><i class="fas fa-phone"></i> +244 935 659 439</li>
+                <li><i class="fas fa-envelope"></i>doistalentos2@gmail.com</li>
+                <li><i class="fas fa-map-marker-alt"></i> Bairro São João Popular, Huambo, Angola</li>
+            </ul>
+        </div>
+    </div>
+ </footer>
+   <script src="home.js">
+      // Filtro de pesquisa
+      document.querySelector('.search-input').addEventListener('input', function(e) {
+         const searchTerm = e.target.value.toLowerCase();
+         const livroCards = document.querySelectorAll('.livro-card');
+         
+         livroCards.forEach(card => {
+            const titulo = card.querySelector('h3').textContent.toLowerCase();
+            const autor = card.querySelector('p').textContent.toLowerCase();
+            
+            if (titulo.includes(searchTerm) || autor.includes(searchTerm)) {
+               card.style.display = 'flex';
+            } else {
+               card.style.display = 'none';
+            }
+         });
+      });
+
+      // Filtro de categorias
+      const categoriaButtons = document.querySelectorAll('.categoria-btn');
+      categoriaButtons.forEach(button => {
+         button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            categoriaButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Filter logic (simplified example)
+            const categoria = this.textContent.toLowerCase();
+            const livroCards = document.querySelectorAll('.livro-card');
+            
+            livroCards.forEach(card => {
+               if (categoria === 'todos' || card.textContent.toLowerCase().includes(categoria)) {
+                  card.style.display = 'flex';
+               } else {
+                  card.style.display = 'none';
+               }
+            });
+         });
+      });
+   </script>
+</body>
+</html>
